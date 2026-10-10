@@ -1,0 +1,17 @@
+﻿Build started 9/28/2026 11:28:17 PM.
+     1>Project "D:\FOC\FOC_IM\3Phase_5Level\3Phase_5Level\3Phase_5Level.vcxproj" on node 2 (build target(s)).
+     1>PrepareForBuild:
+         Creating directory "D:\FOC\FOC_IM\3Phase_5Level\Debug\".
+       InitializeBuildStatus:
+         Creating "Debug\3Phase_5Level.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\3Phase_5Level.dll.embed.manifest.res" Debug\3Phase_5Level_manifest.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\FOC\FOC_IM\3Phase_5Level\Debug\3Phase_5Level.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\3Phase_5Level.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\FOC\FOC_IM\3Phase_5Level\Debug\3Phase_5Level.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\FOC\FOC_IM\3Phase_5Level\Debug\3Phase_5Level.lib" /MACHINE:X86 /DLL Debug\3Phase_5Level.dll.embed.manifest.res
+     1>LINK : error LNK2001: unresolved external symbol __DllMainCRTStartup@12
+     1>D:\FOC\FOC_IM\3Phase_5Level\Debug\3Phase_5Level.dll : fatal error LNK1120: 1 unresolved externals
+     1>Done Building Project "D:\FOC\FOC_IM\3Phase_5Level\3Phase_5Level\3Phase_5Level.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.89
