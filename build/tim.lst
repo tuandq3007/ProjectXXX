@@ -1,0 +1,1287 @@
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"tim.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/tim.c"
+  20              		.section	.text.HAL_TIM_PWM_MspInit,"ax",%progbits
+  21              		.align	1
+  22              		.global	HAL_TIM_PWM_MspInit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	HAL_TIM_PWM_MspInit:
+  28              	.LVL0:
+  29              	.LFB362:
+   1:Core/Src/tim.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/tim.c **** /**
+   3:Core/Src/tim.c ****   ******************************************************************************
+   4:Core/Src/tim.c ****   * @file    tim.c
+   5:Core/Src/tim.c ****   * @brief   This file provides code for the configuration
+   6:Core/Src/tim.c ****   *          of the TIM instances.
+   7:Core/Src/tim.c ****   ******************************************************************************
+   8:Core/Src/tim.c ****   * @attention
+   9:Core/Src/tim.c ****   *
+  10:Core/Src/tim.c ****   * Copyright (c) 2026 STMicroelectronics.
+  11:Core/Src/tim.c ****   * All rights reserved.
+  12:Core/Src/tim.c ****   *
+  13:Core/Src/tim.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  14:Core/Src/tim.c ****   * in the root directory of this software component.
+  15:Core/Src/tim.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  16:Core/Src/tim.c ****   *
+  17:Core/Src/tim.c ****   ******************************************************************************
+  18:Core/Src/tim.c ****   */
+  19:Core/Src/tim.c **** /* USER CODE END Header */
+  20:Core/Src/tim.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/tim.c **** #include "tim.h"
+  22:Core/Src/tim.c **** 
+  23:Core/Src/tim.c **** /* USER CODE BEGIN 0 */
+  24:Core/Src/tim.c **** 
+  25:Core/Src/tim.c **** /* USER CODE END 0 */
+  26:Core/Src/tim.c **** 
+  27:Core/Src/tim.c **** TIM_HandleTypeDef htim1;
+  28:Core/Src/tim.c **** 
+  29:Core/Src/tim.c **** /* TIM1 init function */
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 2
+
+
+  30:Core/Src/tim.c **** void MX_TIM1_Init(void)
+  31:Core/Src/tim.c **** {
+  32:Core/Src/tim.c **** 
+  33:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_Init 0 */
+  34:Core/Src/tim.c **** 
+  35:Core/Src/tim.c ****   /* USER CODE END TIM1_Init 0 */
+  36:Core/Src/tim.c **** 
+  37:Core/Src/tim.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
+  38:Core/Src/tim.c ****   TIMEx_BreakInputConfigTypeDef sBreakInputConfig = {0};
+  39:Core/Src/tim.c ****   TIM_OC_InitTypeDef sConfigOC = {0};
+  40:Core/Src/tim.c ****   TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
+  41:Core/Src/tim.c **** 
+  42:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_Init 1 */
+  43:Core/Src/tim.c **** 
+  44:Core/Src/tim.c ****   /* USER CODE END TIM1_Init 1 */
+  45:Core/Src/tim.c ****   htim1.Instance = TIM1;
+  46:Core/Src/tim.c ****   htim1.Init.Prescaler = 0;
+  47:Core/Src/tim.c ****   htim1.Init.CounterMode = TIM_COUNTERMODE_CENTERALIGNED1;
+  48:Core/Src/tim.c ****   htim1.Init.Period = 4249;
+  49:Core/Src/tim.c ****   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  50:Core/Src/tim.c ****   htim1.Init.RepetitionCounter = 1;
+  51:Core/Src/tim.c ****   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  52:Core/Src/tim.c ****   if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
+  53:Core/Src/tim.c ****   {
+  54:Core/Src/tim.c ****     Error_Handler();
+  55:Core/Src/tim.c ****   }
+  56:Core/Src/tim.c ****   if (HAL_TIM_OC_Init(&htim1) != HAL_OK)
+  57:Core/Src/tim.c ****   {
+  58:Core/Src/tim.c ****     Error_Handler();
+  59:Core/Src/tim.c ****   }
+  60:Core/Src/tim.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  61:Core/Src/tim.c ****   sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_OC4REF;
+  62:Core/Src/tim.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  63:Core/Src/tim.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  64:Core/Src/tim.c ****   {
+  65:Core/Src/tim.c ****     Error_Handler();
+  66:Core/Src/tim.c ****   }
+  67:Core/Src/tim.c ****   sBreakInputConfig.Source = TIM_BREAKINPUTSOURCE_BKIN;
+  68:Core/Src/tim.c ****   sBreakInputConfig.Enable = TIM_BREAKINPUTSOURCE_ENABLE;
+  69:Core/Src/tim.c ****   sBreakInputConfig.Polarity = TIM_BREAKINPUTSOURCE_POLARITY_HIGH;
+  70:Core/Src/tim.c ****   if (HAL_TIMEx_ConfigBreakInput(&htim1, TIM_BREAKINPUT_BRK, &sBreakInputConfig) != HAL_OK)
+  71:Core/Src/tim.c ****   {
+  72:Core/Src/tim.c ****     Error_Handler();
+  73:Core/Src/tim.c ****   }
+  74:Core/Src/tim.c ****   sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  75:Core/Src/tim.c ****   sConfigOC.Pulse = 2125;
+  76:Core/Src/tim.c ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  77:Core/Src/tim.c ****   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+  78:Core/Src/tim.c ****   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  79:Core/Src/tim.c ****   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+  80:Core/Src/tim.c ****   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+  81:Core/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  82:Core/Src/tim.c ****   {
+  83:Core/Src/tim.c ****     Error_Handler();
+  84:Core/Src/tim.c ****   }
+  85:Core/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  86:Core/Src/tim.c ****   {
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 3
+
+
+  87:Core/Src/tim.c ****     Error_Handler();
+  88:Core/Src/tim.c ****   }
+  89:Core/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
+  90:Core/Src/tim.c ****   {
+  91:Core/Src/tim.c ****     Error_Handler();
+  92:Core/Src/tim.c ****   }
+  93:Core/Src/tim.c ****   sConfigOC.OCMode = TIM_OCMODE_ACTIVE;
+  94:Core/Src/tim.c ****   if (HAL_TIM_OC_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+  95:Core/Src/tim.c ****   {
+  96:Core/Src/tim.c ****     Error_Handler();
+  97:Core/Src/tim.c ****   }
+  98:Core/Src/tim.c ****   __HAL_TIM_ENABLE_OCxPRELOAD(&htim1, TIM_CHANNEL_4);
+  99:Core/Src/tim.c ****   sConfigOC.OCMode = TIM_OCMODE_PWM1;
+ 100:Core/Src/tim.c ****   sConfigOC.Pulse = 0;
+ 101:Core/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_5) != HAL_OK)
+ 102:Core/Src/tim.c ****   {
+ 103:Core/Src/tim.c ****     Error_Handler();
+ 104:Core/Src/tim.c ****   }
+ 105:Core/Src/tim.c ****   sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_ENABLE;
+ 106:Core/Src/tim.c ****   sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_ENABLE;
+ 107:Core/Src/tim.c ****   sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+ 108:Core/Src/tim.c ****   sBreakDeadTimeConfig.DeadTime = 85;
+ 109:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakState = TIM_BREAK_ENABLE;
+ 110:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+ 111:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakFilter = 0;
+ 112:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakAFMode = TIM_BREAK_AFMODE_INPUT;
+ 113:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2State = TIM_BREAK2_DISABLE;
+ 114:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2Polarity = TIM_BREAK2POLARITY_HIGH;
+ 115:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2Filter = 0;
+ 116:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2AFMode = TIM_BREAK_AFMODE_INPUT;
+ 117:Core/Src/tim.c ****   sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+ 118:Core/Src/tim.c ****   if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+ 119:Core/Src/tim.c ****   {
+ 120:Core/Src/tim.c ****     Error_Handler();
+ 121:Core/Src/tim.c ****   }
+ 122:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_Init 2 */
+ 123:Core/Src/tim.c **** 
+ 124:Core/Src/tim.c ****   /* USER CODE END TIM1_Init 2 */
+ 125:Core/Src/tim.c ****   HAL_TIM_MspPostInit(&htim1);
+ 126:Core/Src/tim.c **** 
+ 127:Core/Src/tim.c **** }
+ 128:Core/Src/tim.c **** 
+ 129:Core/Src/tim.c **** void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* tim_pwmHandle)
+ 130:Core/Src/tim.c **** {
+  30              		.loc 1 130 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 32
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 130 1 is_stmt 0 view .LVU1
+  35 0000 00B5     		push	{lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 4
+  38              		.cfi_offset 14, -4
+  39 0002 89B0     		sub	sp, sp, #36
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 40
+ 131:Core/Src/tim.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 4
+
+
+ 132:Core/Src/tim.c ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
+  42              		.loc 1 132 3 is_stmt 1 view .LVU2
+  43              		.loc 1 132 20 is_stmt 0 view .LVU3
+  44 0004 0023     		movs	r3, #0
+  45 0006 0393     		str	r3, [sp, #12]
+  46 0008 0493     		str	r3, [sp, #16]
+  47 000a 0593     		str	r3, [sp, #20]
+  48 000c 0693     		str	r3, [sp, #24]
+  49 000e 0793     		str	r3, [sp, #28]
+ 133:Core/Src/tim.c ****   if(tim_pwmHandle->Instance==TIM1)
+  50              		.loc 1 133 3 is_stmt 1 view .LVU4
+  51              		.loc 1 133 19 is_stmt 0 view .LVU5
+  52 0010 0268     		ldr	r2, [r0]
+  53              		.loc 1 133 5 view .LVU6
+  54 0012 134B     		ldr	r3, .L5
+  55 0014 9A42     		cmp	r2, r3
+  56 0016 02D0     		beq	.L4
+  57              	.LVL1:
+  58              	.L1:
+ 134:Core/Src/tim.c ****   {
+ 135:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspInit 0 */
+ 136:Core/Src/tim.c **** 
+ 137:Core/Src/tim.c ****   /* USER CODE END TIM1_MspInit 0 */
+ 138:Core/Src/tim.c ****     /* TIM1 clock enable */
+ 139:Core/Src/tim.c ****     __HAL_RCC_TIM1_CLK_ENABLE();
+ 140:Core/Src/tim.c **** 
+ 141:Core/Src/tim.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 142:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+ 143:Core/Src/tim.c ****     PA6     ------> TIM1_BKIN
+ 144:Core/Src/tim.c ****     */
+ 145:Core/Src/tim.c ****     GPIO_InitStruct.Pin = GPIO_PIN_6;
+ 146:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+ 147:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 148:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 149:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF6_TIM1;
+ 150:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 151:Core/Src/tim.c **** 
+ 152:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspInit 1 */
+ 153:Core/Src/tim.c **** 
+ 154:Core/Src/tim.c ****   /* USER CODE END TIM1_MspInit 1 */
+ 155:Core/Src/tim.c ****   }
+ 156:Core/Src/tim.c **** }
+  59              		.loc 1 156 1 view .LVU7
+  60 0018 09B0     		add	sp, sp, #36
+  61              	.LCFI2:
+  62              		.cfi_remember_state
+  63              		.cfi_def_cfa_offset 4
+  64              		@ sp needed
+  65 001a 5DF804FB 		ldr	pc, [sp], #4
+  66              	.LVL2:
+  67              	.L4:
+  68              	.LCFI3:
+  69              		.cfi_restore_state
+ 139:Core/Src/tim.c **** 
+  70              		.loc 1 139 5 is_stmt 1 view .LVU8
+  71              	.LBB2:
+ 139:Core/Src/tim.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 5
+
+
+  72              		.loc 1 139 5 view .LVU9
+ 139:Core/Src/tim.c **** 
+  73              		.loc 1 139 5 view .LVU10
+  74 001e 03F56443 		add	r3, r3, #58368
+  75 0022 1A6E     		ldr	r2, [r3, #96]
+  76 0024 42F40062 		orr	r2, r2, #2048
+  77 0028 1A66     		str	r2, [r3, #96]
+ 139:Core/Src/tim.c **** 
+  78              		.loc 1 139 5 view .LVU11
+  79 002a 1A6E     		ldr	r2, [r3, #96]
+  80 002c 02F40062 		and	r2, r2, #2048
+  81 0030 0192     		str	r2, [sp, #4]
+ 139:Core/Src/tim.c **** 
+  82              		.loc 1 139 5 view .LVU12
+  83 0032 019A     		ldr	r2, [sp, #4]
+  84              	.LBE2:
+ 139:Core/Src/tim.c **** 
+  85              		.loc 1 139 5 view .LVU13
+ 141:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+  86              		.loc 1 141 5 view .LVU14
+  87              	.LBB3:
+ 141:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+  88              		.loc 1 141 5 view .LVU15
+ 141:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+  89              		.loc 1 141 5 view .LVU16
+  90 0034 DA6C     		ldr	r2, [r3, #76]
+  91 0036 42F00102 		orr	r2, r2, #1
+  92 003a DA64     		str	r2, [r3, #76]
+ 141:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+  93              		.loc 1 141 5 view .LVU17
+  94 003c DB6C     		ldr	r3, [r3, #76]
+  95 003e 03F00103 		and	r3, r3, #1
+  96 0042 0293     		str	r3, [sp, #8]
+ 141:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+  97              		.loc 1 141 5 view .LVU18
+  98 0044 029B     		ldr	r3, [sp, #8]
+  99              	.LBE3:
+ 141:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+ 100              		.loc 1 141 5 view .LVU19
+ 145:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+ 101              		.loc 1 145 5 view .LVU20
+ 145:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+ 102              		.loc 1 145 25 is_stmt 0 view .LVU21
+ 103 0046 4023     		movs	r3, #64
+ 104 0048 0393     		str	r3, [sp, #12]
+ 146:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 105              		.loc 1 146 5 is_stmt 1 view .LVU22
+ 146:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 106              		.loc 1 146 26 is_stmt 0 view .LVU23
+ 107 004a 1223     		movs	r3, #18
+ 108 004c 0493     		str	r3, [sp, #16]
+ 147:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 109              		.loc 1 147 5 is_stmt 1 view .LVU24
+ 148:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF6_TIM1;
+ 110              		.loc 1 148 5 view .LVU25
+ 149:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 111              		.loc 1 149 5 view .LVU26
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 6
+
+
+ 149:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 112              		.loc 1 149 31 is_stmt 0 view .LVU27
+ 113 004e 0623     		movs	r3, #6
+ 114 0050 0793     		str	r3, [sp, #28]
+ 150:Core/Src/tim.c **** 
+ 115              		.loc 1 150 5 is_stmt 1 view .LVU28
+ 116 0052 03A9     		add	r1, sp, #12
+ 117 0054 4FF09040 		mov	r0, #1207959552
+ 118              	.LVL3:
+ 150:Core/Src/tim.c **** 
+ 119              		.loc 1 150 5 is_stmt 0 view .LVU29
+ 120 0058 FFF7FEFF 		bl	HAL_GPIO_Init
+ 121              	.LVL4:
+ 122              		.loc 1 156 1 view .LVU30
+ 123 005c DCE7     		b	.L1
+ 124              	.L6:
+ 125 005e 00BF     		.align	2
+ 126              	.L5:
+ 127 0060 002C0140 		.word	1073818624
+ 128              		.cfi_endproc
+ 129              	.LFE362:
+ 131              		.section	.text.HAL_TIM_MspPostInit,"ax",%progbits
+ 132              		.align	1
+ 133              		.global	HAL_TIM_MspPostInit
+ 134              		.syntax unified
+ 135              		.thumb
+ 136              		.thumb_func
+ 138              	HAL_TIM_MspPostInit:
+ 139              	.LVL5:
+ 140              	.LFB363:
+ 157:Core/Src/tim.c **** void HAL_TIM_MspPostInit(TIM_HandleTypeDef* timHandle)
+ 158:Core/Src/tim.c **** {
+ 141              		.loc 1 158 1 is_stmt 1 view -0
+ 142              		.cfi_startproc
+ 143              		@ args = 0, pretend = 0, frame = 32
+ 144              		@ frame_needed = 0, uses_anonymous_args = 0
+ 145              		.loc 1 158 1 is_stmt 0 view .LVU32
+ 146 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 147              	.LCFI4:
+ 148              		.cfi_def_cfa_offset 20
+ 149              		.cfi_offset 4, -20
+ 150              		.cfi_offset 5, -16
+ 151              		.cfi_offset 6, -12
+ 152              		.cfi_offset 7, -8
+ 153              		.cfi_offset 14, -4
+ 154 0002 89B0     		sub	sp, sp, #36
+ 155              	.LCFI5:
+ 156              		.cfi_def_cfa_offset 56
+ 159:Core/Src/tim.c **** 
+ 160:Core/Src/tim.c ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
+ 157              		.loc 1 160 3 is_stmt 1 view .LVU33
+ 158              		.loc 1 160 20 is_stmt 0 view .LVU34
+ 159 0004 0023     		movs	r3, #0
+ 160 0006 0393     		str	r3, [sp, #12]
+ 161 0008 0493     		str	r3, [sp, #16]
+ 162 000a 0593     		str	r3, [sp, #20]
+ 163 000c 0693     		str	r3, [sp, #24]
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 7
+
+
+ 164 000e 0793     		str	r3, [sp, #28]
+ 161:Core/Src/tim.c ****   if(timHandle->Instance==TIM1)
+ 165              		.loc 1 161 3 is_stmt 1 view .LVU35
+ 166              		.loc 1 161 15 is_stmt 0 view .LVU36
+ 167 0010 0268     		ldr	r2, [r0]
+ 168              		.loc 1 161 5 view .LVU37
+ 169 0012 264B     		ldr	r3, .L11
+ 170 0014 9A42     		cmp	r2, r3
+ 171 0016 01D0     		beq	.L10
+ 172              	.LVL6:
+ 173              	.L7:
+ 162:Core/Src/tim.c ****   {
+ 163:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspPostInit 0 */
+ 164:Core/Src/tim.c **** 
+ 165:Core/Src/tim.c ****   /* USER CODE END TIM1_MspPostInit 0 */
+ 166:Core/Src/tim.c **** 
+ 167:Core/Src/tim.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 168:Core/Src/tim.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 169:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+ 170:Core/Src/tim.c ****     PB13     ------> TIM1_CH1N
+ 171:Core/Src/tim.c ****     PB14     ------> TIM1_CH2N
+ 172:Core/Src/tim.c ****     PB15     ------> TIM1_CH3N
+ 173:Core/Src/tim.c ****     PA8     ------> TIM1_CH1
+ 174:Core/Src/tim.c ****     PA9     ------> TIM1_CH2
+ 175:Core/Src/tim.c ****     PA10     ------> TIM1_CH3
+ 176:Core/Src/tim.c ****     PA11     ------> TIM1_CH4
+ 177:Core/Src/tim.c ****     */
+ 178:Core/Src/tim.c ****     GPIO_InitStruct.Pin = GPIO_PIN_13|GPIO_PIN_14;
+ 179:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 180:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 181:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 182:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF6_TIM1;
+ 183:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 184:Core/Src/tim.c **** 
+ 185:Core/Src/tim.c ****     GPIO_InitStruct.Pin = GPIO_PIN_15;
+ 186:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 187:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 188:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 189:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF4_TIM1;
+ 190:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 191:Core/Src/tim.c **** 
+ 192:Core/Src/tim.c ****     GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10;
+ 193:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 194:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 195:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 196:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF6_TIM1;
+ 197:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 198:Core/Src/tim.c **** 
+ 199:Core/Src/tim.c ****     GPIO_InitStruct.Pin = GPIO_PIN_11;
+ 200:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 201:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 202:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 203:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF11_TIM1;
+ 204:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 205:Core/Src/tim.c **** 
+ 206:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspPostInit 1 */
+ 207:Core/Src/tim.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 8
+
+
+ 208:Core/Src/tim.c ****   /* USER CODE END TIM1_MspPostInit 1 */
+ 209:Core/Src/tim.c ****   }
+ 210:Core/Src/tim.c **** 
+ 211:Core/Src/tim.c **** }
+ 174              		.loc 1 211 1 view .LVU38
+ 175 0018 09B0     		add	sp, sp, #36
+ 176              	.LCFI6:
+ 177              		.cfi_remember_state
+ 178              		.cfi_def_cfa_offset 20
+ 179              		@ sp needed
+ 180 001a F0BD     		pop	{r4, r5, r6, r7, pc}
+ 181              	.LVL7:
+ 182              	.L10:
+ 183              	.LCFI7:
+ 184              		.cfi_restore_state
+ 167:Core/Src/tim.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 185              		.loc 1 167 5 is_stmt 1 view .LVU39
+ 186              	.LBB4:
+ 167:Core/Src/tim.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 187              		.loc 1 167 5 view .LVU40
+ 167:Core/Src/tim.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 188              		.loc 1 167 5 view .LVU41
+ 189 001c 03F56443 		add	r3, r3, #58368
+ 190 0020 DA6C     		ldr	r2, [r3, #76]
+ 191 0022 42F00202 		orr	r2, r2, #2
+ 192 0026 DA64     		str	r2, [r3, #76]
+ 167:Core/Src/tim.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 193              		.loc 1 167 5 view .LVU42
+ 194 0028 DA6C     		ldr	r2, [r3, #76]
+ 195 002a 02F00202 		and	r2, r2, #2
+ 196 002e 0192     		str	r2, [sp, #4]
+ 167:Core/Src/tim.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 197              		.loc 1 167 5 view .LVU43
+ 198 0030 019A     		ldr	r2, [sp, #4]
+ 199              	.LBE4:
+ 167:Core/Src/tim.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 200              		.loc 1 167 5 view .LVU44
+ 168:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+ 201              		.loc 1 168 5 view .LVU45
+ 202              	.LBB5:
+ 168:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+ 203              		.loc 1 168 5 view .LVU46
+ 168:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+ 204              		.loc 1 168 5 view .LVU47
+ 205 0032 DA6C     		ldr	r2, [r3, #76]
+ 206 0034 42F00102 		orr	r2, r2, #1
+ 207 0038 DA64     		str	r2, [r3, #76]
+ 168:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+ 208              		.loc 1 168 5 view .LVU48
+ 209 003a DB6C     		ldr	r3, [r3, #76]
+ 210 003c 03F00103 		and	r3, r3, #1
+ 211 0040 0293     		str	r3, [sp, #8]
+ 168:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+ 212              		.loc 1 168 5 view .LVU49
+ 213 0042 029B     		ldr	r3, [sp, #8]
+ 214              	.LBE5:
+ 168:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 9
+
+
+ 215              		.loc 1 168 5 view .LVU50
+ 178:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 216              		.loc 1 178 5 view .LVU51
+ 178:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 217              		.loc 1 178 25 is_stmt 0 view .LVU52
+ 218 0044 4FF4C043 		mov	r3, #24576
+ 219 0048 0393     		str	r3, [sp, #12]
+ 179:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 220              		.loc 1 179 5 is_stmt 1 view .LVU53
+ 179:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 221              		.loc 1 179 26 is_stmt 0 view .LVU54
+ 222 004a 0225     		movs	r5, #2
+ 223 004c 0495     		str	r5, [sp, #16]
+ 180:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 224              		.loc 1 180 5 is_stmt 1 view .LVU55
+ 181:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF6_TIM1;
+ 225              		.loc 1 181 5 view .LVU56
+ 182:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 226              		.loc 1 182 5 view .LVU57
+ 182:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 227              		.loc 1 182 31 is_stmt 0 view .LVU58
+ 228 004e 0626     		movs	r6, #6
+ 229 0050 0796     		str	r6, [sp, #28]
+ 183:Core/Src/tim.c **** 
+ 230              		.loc 1 183 5 is_stmt 1 view .LVU59
+ 231 0052 174F     		ldr	r7, .L11+4
+ 232 0054 03A9     		add	r1, sp, #12
+ 233 0056 3846     		mov	r0, r7
+ 234              	.LVL8:
+ 183:Core/Src/tim.c **** 
+ 235              		.loc 1 183 5 is_stmt 0 view .LVU60
+ 236 0058 FFF7FEFF 		bl	HAL_GPIO_Init
+ 237              	.LVL9:
+ 185:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 238              		.loc 1 185 5 is_stmt 1 view .LVU61
+ 185:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 239              		.loc 1 185 25 is_stmt 0 view .LVU62
+ 240 005c 4FF40043 		mov	r3, #32768
+ 241 0060 0393     		str	r3, [sp, #12]
+ 186:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 242              		.loc 1 186 5 is_stmt 1 view .LVU63
+ 186:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 243              		.loc 1 186 26 is_stmt 0 view .LVU64
+ 244 0062 0495     		str	r5, [sp, #16]
+ 187:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 245              		.loc 1 187 5 is_stmt 1 view .LVU65
+ 187:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 246              		.loc 1 187 26 is_stmt 0 view .LVU66
+ 247 0064 0024     		movs	r4, #0
+ 248 0066 0594     		str	r4, [sp, #20]
+ 188:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF4_TIM1;
+ 249              		.loc 1 188 5 is_stmt 1 view .LVU67
+ 188:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF4_TIM1;
+ 250              		.loc 1 188 27 is_stmt 0 view .LVU68
+ 251 0068 0694     		str	r4, [sp, #24]
+ 189:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 252              		.loc 1 189 5 is_stmt 1 view .LVU69
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 10
+
+
+ 189:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 253              		.loc 1 189 31 is_stmt 0 view .LVU70
+ 254 006a 0423     		movs	r3, #4
+ 255 006c 0793     		str	r3, [sp, #28]
+ 190:Core/Src/tim.c **** 
+ 256              		.loc 1 190 5 is_stmt 1 view .LVU71
+ 257 006e 03A9     		add	r1, sp, #12
+ 258 0070 3846     		mov	r0, r7
+ 259 0072 FFF7FEFF 		bl	HAL_GPIO_Init
+ 260              	.LVL10:
+ 192:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 261              		.loc 1 192 5 view .LVU72
+ 192:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 262              		.loc 1 192 25 is_stmt 0 view .LVU73
+ 263 0076 4FF4E063 		mov	r3, #1792
+ 264 007a 0393     		str	r3, [sp, #12]
+ 193:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 265              		.loc 1 193 5 is_stmt 1 view .LVU74
+ 193:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 266              		.loc 1 193 26 is_stmt 0 view .LVU75
+ 267 007c 0495     		str	r5, [sp, #16]
+ 194:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 268              		.loc 1 194 5 is_stmt 1 view .LVU76
+ 194:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 269              		.loc 1 194 26 is_stmt 0 view .LVU77
+ 270 007e 0594     		str	r4, [sp, #20]
+ 195:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF6_TIM1;
+ 271              		.loc 1 195 5 is_stmt 1 view .LVU78
+ 195:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF6_TIM1;
+ 272              		.loc 1 195 27 is_stmt 0 view .LVU79
+ 273 0080 0694     		str	r4, [sp, #24]
+ 196:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 274              		.loc 1 196 5 is_stmt 1 view .LVU80
+ 196:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 275              		.loc 1 196 31 is_stmt 0 view .LVU81
+ 276 0082 0796     		str	r6, [sp, #28]
+ 197:Core/Src/tim.c **** 
+ 277              		.loc 1 197 5 is_stmt 1 view .LVU82
+ 278 0084 03A9     		add	r1, sp, #12
+ 279 0086 4FF09040 		mov	r0, #1207959552
+ 280 008a FFF7FEFF 		bl	HAL_GPIO_Init
+ 281              	.LVL11:
+ 199:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 282              		.loc 1 199 5 view .LVU83
+ 199:Core/Src/tim.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 283              		.loc 1 199 25 is_stmt 0 view .LVU84
+ 284 008e 4FF40063 		mov	r3, #2048
+ 285 0092 0393     		str	r3, [sp, #12]
+ 200:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 286              		.loc 1 200 5 is_stmt 1 view .LVU85
+ 200:Core/Src/tim.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 287              		.loc 1 200 26 is_stmt 0 view .LVU86
+ 288 0094 0495     		str	r5, [sp, #16]
+ 201:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 289              		.loc 1 201 5 is_stmt 1 view .LVU87
+ 201:Core/Src/tim.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 290              		.loc 1 201 26 is_stmt 0 view .LVU88
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 11
+
+
+ 291 0096 0594     		str	r4, [sp, #20]
+ 202:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF11_TIM1;
+ 292              		.loc 1 202 5 is_stmt 1 view .LVU89
+ 202:Core/Src/tim.c ****     GPIO_InitStruct.Alternate = GPIO_AF11_TIM1;
+ 293              		.loc 1 202 27 is_stmt 0 view .LVU90
+ 294 0098 0694     		str	r4, [sp, #24]
+ 203:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 295              		.loc 1 203 5 is_stmt 1 view .LVU91
+ 203:Core/Src/tim.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 296              		.loc 1 203 31 is_stmt 0 view .LVU92
+ 297 009a 0B23     		movs	r3, #11
+ 298 009c 0793     		str	r3, [sp, #28]
+ 204:Core/Src/tim.c **** 
+ 299              		.loc 1 204 5 is_stmt 1 view .LVU93
+ 300 009e 03A9     		add	r1, sp, #12
+ 301 00a0 4FF09040 		mov	r0, #1207959552
+ 302 00a4 FFF7FEFF 		bl	HAL_GPIO_Init
+ 303              	.LVL12:
+ 304              		.loc 1 211 1 is_stmt 0 view .LVU94
+ 305 00a8 B6E7     		b	.L7
+ 306              	.L12:
+ 307 00aa 00BF     		.align	2
+ 308              	.L11:
+ 309 00ac 002C0140 		.word	1073818624
+ 310 00b0 00040048 		.word	1207960576
+ 311              		.cfi_endproc
+ 312              	.LFE363:
+ 314              		.section	.text.MX_TIM1_Init,"ax",%progbits
+ 315              		.align	1
+ 316              		.global	MX_TIM1_Init
+ 317              		.syntax unified
+ 318              		.thumb
+ 319              		.thumb_func
+ 321              	MX_TIM1_Init:
+ 322              	.LFB361:
+  31:Core/Src/tim.c **** 
+ 323              		.loc 1 31 1 is_stmt 1 view -0
+ 324              		.cfi_startproc
+ 325              		@ args = 0, pretend = 0, frame = 104
+ 326              		@ frame_needed = 0, uses_anonymous_args = 0
+ 327 0000 10B5     		push	{r4, lr}
+ 328              	.LCFI8:
+ 329              		.cfi_def_cfa_offset 8
+ 330              		.cfi_offset 4, -8
+ 331              		.cfi_offset 14, -4
+ 332 0002 9AB0     		sub	sp, sp, #104
+ 333              	.LCFI9:
+ 334              		.cfi_def_cfa_offset 112
+  37:Core/Src/tim.c ****   TIMEx_BreakInputConfigTypeDef sBreakInputConfig = {0};
+ 335              		.loc 1 37 3 view .LVU96
+  37:Core/Src/tim.c ****   TIMEx_BreakInputConfigTypeDef sBreakInputConfig = {0};
+ 336              		.loc 1 37 27 is_stmt 0 view .LVU97
+ 337 0004 0024     		movs	r4, #0
+ 338 0006 1794     		str	r4, [sp, #92]
+ 339 0008 1894     		str	r4, [sp, #96]
+ 340 000a 1994     		str	r4, [sp, #100]
+  38:Core/Src/tim.c ****   TIM_OC_InitTypeDef sConfigOC = {0};
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 12
+
+
+ 341              		.loc 1 38 3 is_stmt 1 view .LVU98
+  38:Core/Src/tim.c ****   TIM_OC_InitTypeDef sConfigOC = {0};
+ 342              		.loc 1 38 33 is_stmt 0 view .LVU99
+ 343 000c 1494     		str	r4, [sp, #80]
+ 344 000e 1594     		str	r4, [sp, #84]
+ 345 0010 1694     		str	r4, [sp, #88]
+  39:Core/Src/tim.c ****   TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
+ 346              		.loc 1 39 3 is_stmt 1 view .LVU100
+  39:Core/Src/tim.c ****   TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
+ 347              		.loc 1 39 22 is_stmt 0 view .LVU101
+ 348 0012 0D94     		str	r4, [sp, #52]
+ 349 0014 0E94     		str	r4, [sp, #56]
+ 350 0016 0F94     		str	r4, [sp, #60]
+ 351 0018 1094     		str	r4, [sp, #64]
+ 352 001a 1194     		str	r4, [sp, #68]
+ 353 001c 1294     		str	r4, [sp, #72]
+ 354 001e 1394     		str	r4, [sp, #76]
+  40:Core/Src/tim.c **** 
+ 355              		.loc 1 40 3 is_stmt 1 view .LVU102
+  40:Core/Src/tim.c **** 
+ 356              		.loc 1 40 34 is_stmt 0 view .LVU103
+ 357 0020 3422     		movs	r2, #52
+ 358 0022 2146     		mov	r1, r4
+ 359 0024 6846     		mov	r0, sp
+ 360 0026 FFF7FEFF 		bl	memset
+ 361              	.LVL13:
+  45:Core/Src/tim.c ****   htim1.Init.Prescaler = 0;
+ 362              		.loc 1 45 3 is_stmt 1 view .LVU104
+  45:Core/Src/tim.c ****   htim1.Init.Prescaler = 0;
+ 363              		.loc 1 45 18 is_stmt 0 view .LVU105
+ 364 002a 5448     		ldr	r0, .L35
+ 365 002c 544B     		ldr	r3, .L35+4
+ 366 002e 0360     		str	r3, [r0]
+  46:Core/Src/tim.c ****   htim1.Init.CounterMode = TIM_COUNTERMODE_CENTERALIGNED1;
+ 367              		.loc 1 46 3 is_stmt 1 view .LVU106
+  46:Core/Src/tim.c ****   htim1.Init.CounterMode = TIM_COUNTERMODE_CENTERALIGNED1;
+ 368              		.loc 1 46 24 is_stmt 0 view .LVU107
+ 369 0030 4460     		str	r4, [r0, #4]
+  47:Core/Src/tim.c ****   htim1.Init.Period = 4249;
+ 370              		.loc 1 47 3 is_stmt 1 view .LVU108
+  47:Core/Src/tim.c ****   htim1.Init.Period = 4249;
+ 371              		.loc 1 47 26 is_stmt 0 view .LVU109
+ 372 0032 2023     		movs	r3, #32
+ 373 0034 8360     		str	r3, [r0, #8]
+  48:Core/Src/tim.c ****   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+ 374              		.loc 1 48 3 is_stmt 1 view .LVU110
+  48:Core/Src/tim.c ****   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+ 375              		.loc 1 48 21 is_stmt 0 view .LVU111
+ 376 0036 41F29903 		movw	r3, #4249
+ 377 003a C360     		str	r3, [r0, #12]
+  49:Core/Src/tim.c ****   htim1.Init.RepetitionCounter = 1;
+ 378              		.loc 1 49 3 is_stmt 1 view .LVU112
+  49:Core/Src/tim.c ****   htim1.Init.RepetitionCounter = 1;
+ 379              		.loc 1 49 28 is_stmt 0 view .LVU113
+ 380 003c 0461     		str	r4, [r0, #16]
+  50:Core/Src/tim.c ****   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+ 381              		.loc 1 50 3 is_stmt 1 view .LVU114
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 13
+
+
+  50:Core/Src/tim.c ****   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+ 382              		.loc 1 50 32 is_stmt 0 view .LVU115
+ 383 003e 0123     		movs	r3, #1
+ 384 0040 4361     		str	r3, [r0, #20]
+  51:Core/Src/tim.c ****   if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
+ 385              		.loc 1 51 3 is_stmt 1 view .LVU116
+  51:Core/Src/tim.c ****   if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
+ 386              		.loc 1 51 32 is_stmt 0 view .LVU117
+ 387 0042 8023     		movs	r3, #128
+ 388 0044 8361     		str	r3, [r0, #24]
+  52:Core/Src/tim.c ****   {
+ 389              		.loc 1 52 3 is_stmt 1 view .LVU118
+  52:Core/Src/tim.c ****   {
+ 390              		.loc 1 52 7 is_stmt 0 view .LVU119
+ 391 0046 FFF7FEFF 		bl	HAL_TIM_PWM_Init
+ 392              	.LVL14:
+  52:Core/Src/tim.c ****   {
+ 393              		.loc 1 52 6 discriminator 1 view .LVU120
+ 394 004a 0028     		cmp	r0, #0
+ 395 004c 77D1     		bne	.L25
+ 396              	.L14:
+  56:Core/Src/tim.c ****   {
+ 397              		.loc 1 56 3 is_stmt 1 view .LVU121
+  56:Core/Src/tim.c ****   {
+ 398              		.loc 1 56 7 is_stmt 0 view .LVU122
+ 399 004e 4B48     		ldr	r0, .L35
+ 400 0050 FFF7FEFF 		bl	HAL_TIM_OC_Init
+ 401              	.LVL15:
+  56:Core/Src/tim.c ****   {
+ 402              		.loc 1 56 6 discriminator 1 view .LVU123
+ 403 0054 0028     		cmp	r0, #0
+ 404 0056 75D1     		bne	.L26
+ 405              	.L15:
+  60:Core/Src/tim.c ****   sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_OC4REF;
+ 406              		.loc 1 60 3 is_stmt 1 view .LVU124
+  60:Core/Src/tim.c ****   sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_OC4REF;
+ 407              		.loc 1 60 37 is_stmt 0 view .LVU125
+ 408 0058 2023     		movs	r3, #32
+ 409 005a 1793     		str	r3, [sp, #92]
+  61:Core/Src/tim.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 410              		.loc 1 61 3 is_stmt 1 view .LVU126
+  61:Core/Src/tim.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 411              		.loc 1 61 38 is_stmt 0 view .LVU127
+ 412 005c 4FF4E003 		mov	r3, #7340032
+ 413 0060 1893     		str	r3, [sp, #96]
+  62:Core/Src/tim.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+ 414              		.loc 1 62 3 is_stmt 1 view .LVU128
+  62:Core/Src/tim.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+ 415              		.loc 1 62 33 is_stmt 0 view .LVU129
+ 416 0062 0023     		movs	r3, #0
+ 417 0064 1993     		str	r3, [sp, #100]
+  63:Core/Src/tim.c ****   {
+ 418              		.loc 1 63 3 is_stmt 1 view .LVU130
+  63:Core/Src/tim.c ****   {
+ 419              		.loc 1 63 7 is_stmt 0 view .LVU131
+ 420 0066 17A9     		add	r1, sp, #92
+ 421 0068 4448     		ldr	r0, .L35
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 14
+
+
+ 422 006a FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
+ 423              	.LVL16:
+  63:Core/Src/tim.c ****   {
+ 424              		.loc 1 63 6 discriminator 1 view .LVU132
+ 425 006e 0028     		cmp	r0, #0
+ 426 0070 6BD1     		bne	.L27
+ 427              	.L16:
+  67:Core/Src/tim.c ****   sBreakInputConfig.Enable = TIM_BREAKINPUTSOURCE_ENABLE;
+ 428              		.loc 1 67 3 is_stmt 1 view .LVU133
+  67:Core/Src/tim.c ****   sBreakInputConfig.Enable = TIM_BREAKINPUTSOURCE_ENABLE;
+ 429              		.loc 1 67 28 is_stmt 0 view .LVU134
+ 430 0072 0121     		movs	r1, #1
+ 431 0074 1491     		str	r1, [sp, #80]
+  68:Core/Src/tim.c ****   sBreakInputConfig.Polarity = TIM_BREAKINPUTSOURCE_POLARITY_HIGH;
+ 432              		.loc 1 68 3 is_stmt 1 view .LVU135
+  68:Core/Src/tim.c ****   sBreakInputConfig.Polarity = TIM_BREAKINPUTSOURCE_POLARITY_HIGH;
+ 433              		.loc 1 68 28 is_stmt 0 view .LVU136
+ 434 0076 1591     		str	r1, [sp, #84]
+  69:Core/Src/tim.c ****   if (HAL_TIMEx_ConfigBreakInput(&htim1, TIM_BREAKINPUT_BRK, &sBreakInputConfig) != HAL_OK)
+ 435              		.loc 1 69 3 is_stmt 1 view .LVU137
+  69:Core/Src/tim.c ****   if (HAL_TIMEx_ConfigBreakInput(&htim1, TIM_BREAKINPUT_BRK, &sBreakInputConfig) != HAL_OK)
+ 436              		.loc 1 69 30 is_stmt 0 view .LVU138
+ 437 0078 0023     		movs	r3, #0
+ 438 007a 1693     		str	r3, [sp, #88]
+  70:Core/Src/tim.c ****   {
+ 439              		.loc 1 70 3 is_stmt 1 view .LVU139
+  70:Core/Src/tim.c ****   {
+ 440              		.loc 1 70 7 is_stmt 0 view .LVU140
+ 441 007c 14AA     		add	r2, sp, #80
+ 442 007e 3F48     		ldr	r0, .L35
+ 443 0080 FFF7FEFF 		bl	HAL_TIMEx_ConfigBreakInput
+ 444              	.LVL17:
+  70:Core/Src/tim.c ****   {
+ 445              		.loc 1 70 6 discriminator 1 view .LVU141
+ 446 0084 0028     		cmp	r0, #0
+ 447 0086 63D1     		bne	.L28
+ 448              	.L17:
+  74:Core/Src/tim.c ****   sConfigOC.Pulse = 2125;
+ 449              		.loc 1 74 3 is_stmt 1 view .LVU142
+  74:Core/Src/tim.c ****   sConfigOC.Pulse = 2125;
+ 450              		.loc 1 74 20 is_stmt 0 view .LVU143
+ 451 0088 6023     		movs	r3, #96
+ 452 008a 0D93     		str	r3, [sp, #52]
+  75:Core/Src/tim.c ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+ 453              		.loc 1 75 3 is_stmt 1 view .LVU144
+  75:Core/Src/tim.c ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+ 454              		.loc 1 75 19 is_stmt 0 view .LVU145
+ 455 008c 40F64D03 		movw	r3, #2125
+ 456 0090 0E93     		str	r3, [sp, #56]
+  76:Core/Src/tim.c ****   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+ 457              		.loc 1 76 3 is_stmt 1 view .LVU146
+  76:Core/Src/tim.c ****   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+ 458              		.loc 1 76 24 is_stmt 0 view .LVU147
+ 459 0092 0022     		movs	r2, #0
+ 460 0094 0F92     		str	r2, [sp, #60]
+  77:Core/Src/tim.c ****   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+ 461              		.loc 1 77 3 is_stmt 1 view .LVU148
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 15
+
+
+  77:Core/Src/tim.c ****   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+ 462              		.loc 1 77 25 is_stmt 0 view .LVU149
+ 463 0096 1092     		str	r2, [sp, #64]
+  78:Core/Src/tim.c ****   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+ 464              		.loc 1 78 3 is_stmt 1 view .LVU150
+  78:Core/Src/tim.c ****   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+ 465              		.loc 1 78 24 is_stmt 0 view .LVU151
+ 466 0098 1192     		str	r2, [sp, #68]
+  79:Core/Src/tim.c ****   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+ 467              		.loc 1 79 3 is_stmt 1 view .LVU152
+  79:Core/Src/tim.c ****   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+ 468              		.loc 1 79 25 is_stmt 0 view .LVU153
+ 469 009a 1292     		str	r2, [sp, #72]
+  80:Core/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+ 470              		.loc 1 80 3 is_stmt 1 view .LVU154
+  80:Core/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+ 471              		.loc 1 80 26 is_stmt 0 view .LVU155
+ 472 009c 1392     		str	r2, [sp, #76]
+  81:Core/Src/tim.c ****   {
+ 473              		.loc 1 81 3 is_stmt 1 view .LVU156
+  81:Core/Src/tim.c ****   {
+ 474              		.loc 1 81 7 is_stmt 0 view .LVU157
+ 475 009e 0DA9     		add	r1, sp, #52
+ 476 00a0 3648     		ldr	r0, .L35
+ 477 00a2 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
+ 478              	.LVL18:
+  81:Core/Src/tim.c ****   {
+ 479              		.loc 1 81 6 discriminator 1 view .LVU158
+ 480 00a6 0028     		cmp	r0, #0
+ 481 00a8 55D1     		bne	.L29
+ 482              	.L18:
+  85:Core/Src/tim.c ****   {
+ 483              		.loc 1 85 3 is_stmt 1 view .LVU159
+  85:Core/Src/tim.c ****   {
+ 484              		.loc 1 85 7 is_stmt 0 view .LVU160
+ 485 00aa 0422     		movs	r2, #4
+ 486 00ac 0DA9     		add	r1, sp, #52
+ 487 00ae 3348     		ldr	r0, .L35
+ 488 00b0 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
+ 489              	.LVL19:
+  85:Core/Src/tim.c ****   {
+ 490              		.loc 1 85 6 discriminator 1 view .LVU161
+ 491 00b4 0028     		cmp	r0, #0
+ 492 00b6 51D1     		bne	.L30
+ 493              	.L19:
+  89:Core/Src/tim.c ****   {
+ 494              		.loc 1 89 3 is_stmt 1 view .LVU162
+  89:Core/Src/tim.c ****   {
+ 495              		.loc 1 89 7 is_stmt 0 view .LVU163
+ 496 00b8 0822     		movs	r2, #8
+ 497 00ba 0DA9     		add	r1, sp, #52
+ 498 00bc 2F48     		ldr	r0, .L35
+ 499 00be FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
+ 500              	.LVL20:
+  89:Core/Src/tim.c ****   {
+ 501              		.loc 1 89 6 discriminator 1 view .LVU164
+ 502 00c2 0028     		cmp	r0, #0
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 16
+
+
+ 503 00c4 4DD1     		bne	.L31
+ 504              	.L20:
+  93:Core/Src/tim.c ****   if (HAL_TIM_OC_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+ 505              		.loc 1 93 3 is_stmt 1 view .LVU165
+  93:Core/Src/tim.c ****   if (HAL_TIM_OC_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+ 506              		.loc 1 93 20 is_stmt 0 view .LVU166
+ 507 00c6 1023     		movs	r3, #16
+ 508 00c8 0D93     		str	r3, [sp, #52]
+  94:Core/Src/tim.c ****   {
+ 509              		.loc 1 94 3 is_stmt 1 view .LVU167
+  94:Core/Src/tim.c ****   {
+ 510              		.loc 1 94 7 is_stmt 0 view .LVU168
+ 511 00ca 0C22     		movs	r2, #12
+ 512 00cc 0DA9     		add	r1, sp, #52
+ 513 00ce 2B48     		ldr	r0, .L35
+ 514 00d0 FFF7FEFF 		bl	HAL_TIM_OC_ConfigChannel
+ 515              	.LVL21:
+  94:Core/Src/tim.c ****   {
+ 516              		.loc 1 94 6 discriminator 1 view .LVU169
+ 517 00d4 0028     		cmp	r0, #0
+ 518 00d6 47D1     		bne	.L32
+ 519              	.L21:
+  98:Core/Src/tim.c ****   sConfigOC.OCMode = TIM_OCMODE_PWM1;
+ 520              		.loc 1 98 3 is_stmt 1 view .LVU170
+ 521 00d8 2848     		ldr	r0, .L35
+ 522 00da 0268     		ldr	r2, [r0]
+ 523 00dc D369     		ldr	r3, [r2, #28]
+ 524 00de 43F40063 		orr	r3, r3, #2048
+ 525 00e2 D361     		str	r3, [r2, #28]
+  99:Core/Src/tim.c ****   sConfigOC.Pulse = 0;
+ 526              		.loc 1 99 3 view .LVU171
+  99:Core/Src/tim.c ****   sConfigOC.Pulse = 0;
+ 527              		.loc 1 99 20 is_stmt 0 view .LVU172
+ 528 00e4 6023     		movs	r3, #96
+ 529 00e6 0D93     		str	r3, [sp, #52]
+ 100:Core/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_5) != HAL_OK)
+ 530              		.loc 1 100 3 is_stmt 1 view .LVU173
+ 100:Core/Src/tim.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_5) != HAL_OK)
+ 531              		.loc 1 100 19 is_stmt 0 view .LVU174
+ 532 00e8 0023     		movs	r3, #0
+ 533 00ea 0E93     		str	r3, [sp, #56]
+ 101:Core/Src/tim.c ****   {
+ 534              		.loc 1 101 3 is_stmt 1 view .LVU175
+ 101:Core/Src/tim.c ****   {
+ 535              		.loc 1 101 7 is_stmt 0 view .LVU176
+ 536 00ec 1022     		movs	r2, #16
+ 537 00ee 0DA9     		add	r1, sp, #52
+ 538 00f0 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
+ 539              	.LVL22:
+ 101:Core/Src/tim.c ****   {
+ 540              		.loc 1 101 6 discriminator 1 view .LVU177
+ 541 00f4 0028     		cmp	r0, #0
+ 542 00f6 3AD1     		bne	.L33
+ 543              	.L22:
+ 105:Core/Src/tim.c ****   sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_ENABLE;
+ 544              		.loc 1 105 3 is_stmt 1 view .LVU178
+ 105:Core/Src/tim.c ****   sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_ENABLE;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 17
+
+
+ 545              		.loc 1 105 40 is_stmt 0 view .LVU179
+ 546 00f8 4FF40063 		mov	r3, #2048
+ 547 00fc 0093     		str	r3, [sp]
+ 106:Core/Src/tim.c ****   sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+ 548              		.loc 1 106 3 is_stmt 1 view .LVU180
+ 106:Core/Src/tim.c ****   sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+ 549              		.loc 1 106 41 is_stmt 0 view .LVU181
+ 550 00fe 4FF48063 		mov	r3, #1024
+ 551 0102 0193     		str	r3, [sp, #4]
+ 107:Core/Src/tim.c ****   sBreakDeadTimeConfig.DeadTime = 85;
+ 552              		.loc 1 107 3 is_stmt 1 view .LVU182
+ 107:Core/Src/tim.c ****   sBreakDeadTimeConfig.DeadTime = 85;
+ 553              		.loc 1 107 34 is_stmt 0 view .LVU183
+ 554 0104 0023     		movs	r3, #0
+ 555 0106 0293     		str	r3, [sp, #8]
+ 108:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakState = TIM_BREAK_ENABLE;
+ 556              		.loc 1 108 3 is_stmt 1 view .LVU184
+ 108:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakState = TIM_BREAK_ENABLE;
+ 557              		.loc 1 108 33 is_stmt 0 view .LVU185
+ 558 0108 5522     		movs	r2, #85
+ 559 010a 0392     		str	r2, [sp, #12]
+ 109:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+ 560              		.loc 1 109 3 is_stmt 1 view .LVU186
+ 109:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+ 561              		.loc 1 109 35 is_stmt 0 view .LVU187
+ 562 010c 4FF48052 		mov	r2, #4096
+ 563 0110 0492     		str	r2, [sp, #16]
+ 110:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakFilter = 0;
+ 564              		.loc 1 110 3 is_stmt 1 view .LVU188
+ 110:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakFilter = 0;
+ 565              		.loc 1 110 38 is_stmt 0 view .LVU189
+ 566 0112 4FF40052 		mov	r2, #8192
+ 567 0116 0592     		str	r2, [sp, #20]
+ 111:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakAFMode = TIM_BREAK_AFMODE_INPUT;
+ 568              		.loc 1 111 3 is_stmt 1 view .LVU190
+ 111:Core/Src/tim.c ****   sBreakDeadTimeConfig.BreakAFMode = TIM_BREAK_AFMODE_INPUT;
+ 569              		.loc 1 111 36 is_stmt 0 view .LVU191
+ 570 0118 0693     		str	r3, [sp, #24]
+ 112:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2State = TIM_BREAK2_DISABLE;
+ 571              		.loc 1 112 3 is_stmt 1 view .LVU192
+ 112:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2State = TIM_BREAK2_DISABLE;
+ 572              		.loc 1 112 36 is_stmt 0 view .LVU193
+ 573 011a 0793     		str	r3, [sp, #28]
+ 113:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2Polarity = TIM_BREAK2POLARITY_HIGH;
+ 574              		.loc 1 113 3 is_stmt 1 view .LVU194
+ 113:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2Polarity = TIM_BREAK2POLARITY_HIGH;
+ 575              		.loc 1 113 36 is_stmt 0 view .LVU195
+ 576 011c 0893     		str	r3, [sp, #32]
+ 114:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2Filter = 0;
+ 577              		.loc 1 114 3 is_stmt 1 view .LVU196
+ 114:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2Filter = 0;
+ 578              		.loc 1 114 39 is_stmt 0 view .LVU197
+ 579 011e 4FF00072 		mov	r2, #33554432
+ 580 0122 0992     		str	r2, [sp, #36]
+ 115:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2AFMode = TIM_BREAK_AFMODE_INPUT;
+ 581              		.loc 1 115 3 is_stmt 1 view .LVU198
+ 115:Core/Src/tim.c ****   sBreakDeadTimeConfig.Break2AFMode = TIM_BREAK_AFMODE_INPUT;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 18
+
+
+ 582              		.loc 1 115 37 is_stmt 0 view .LVU199
+ 583 0124 0A93     		str	r3, [sp, #40]
+ 116:Core/Src/tim.c ****   sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+ 584              		.loc 1 116 3 is_stmt 1 view .LVU200
+ 116:Core/Src/tim.c ****   sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+ 585              		.loc 1 116 37 is_stmt 0 view .LVU201
+ 586 0126 0B93     		str	r3, [sp, #44]
+ 117:Core/Src/tim.c ****   if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+ 587              		.loc 1 117 3 is_stmt 1 view .LVU202
+ 117:Core/Src/tim.c ****   if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+ 588              		.loc 1 117 40 is_stmt 0 view .LVU203
+ 589 0128 0C93     		str	r3, [sp, #48]
+ 118:Core/Src/tim.c ****   {
+ 590              		.loc 1 118 3 is_stmt 1 view .LVU204
+ 118:Core/Src/tim.c ****   {
+ 591              		.loc 1 118 7 is_stmt 0 view .LVU205
+ 592 012a 6946     		mov	r1, sp
+ 593 012c 1348     		ldr	r0, .L35
+ 594 012e FFF7FEFF 		bl	HAL_TIMEx_ConfigBreakDeadTime
+ 595              	.LVL23:
+ 118:Core/Src/tim.c ****   {
+ 596              		.loc 1 118 6 discriminator 1 view .LVU206
+ 597 0132 F8B9     		cbnz	r0, .L34
+ 598              	.L23:
+ 125:Core/Src/tim.c **** 
+ 599              		.loc 1 125 3 is_stmt 1 view .LVU207
+ 600 0134 1148     		ldr	r0, .L35
+ 601 0136 FFF7FEFF 		bl	HAL_TIM_MspPostInit
+ 602              	.LVL24:
+ 127:Core/Src/tim.c **** 
+ 603              		.loc 1 127 1 is_stmt 0 view .LVU208
+ 604 013a 1AB0     		add	sp, sp, #104
+ 605              	.LCFI10:
+ 606              		.cfi_remember_state
+ 607              		.cfi_def_cfa_offset 8
+ 608              		@ sp needed
+ 609 013c 10BD     		pop	{r4, pc}
+ 610              	.L25:
+ 611              	.LCFI11:
+ 612              		.cfi_restore_state
+  54:Core/Src/tim.c ****   }
+ 613              		.loc 1 54 5 is_stmt 1 view .LVU209
+ 614 013e FFF7FEFF 		bl	Error_Handler
+ 615              	.LVL25:
+ 616 0142 84E7     		b	.L14
+ 617              	.L26:
+  58:Core/Src/tim.c ****   }
+ 618              		.loc 1 58 5 view .LVU210
+ 619 0144 FFF7FEFF 		bl	Error_Handler
+ 620              	.LVL26:
+ 621 0148 86E7     		b	.L15
+ 622              	.L27:
+  65:Core/Src/tim.c ****   }
+ 623              		.loc 1 65 5 view .LVU211
+ 624 014a FFF7FEFF 		bl	Error_Handler
+ 625              	.LVL27:
+ 626 014e 90E7     		b	.L16
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 19
+
+
+ 627              	.L28:
+  72:Core/Src/tim.c ****   }
+ 628              		.loc 1 72 5 view .LVU212
+ 629 0150 FFF7FEFF 		bl	Error_Handler
+ 630              	.LVL28:
+ 631 0154 98E7     		b	.L17
+ 632              	.L29:
+  83:Core/Src/tim.c ****   }
+ 633              		.loc 1 83 5 view .LVU213
+ 634 0156 FFF7FEFF 		bl	Error_Handler
+ 635              	.LVL29:
+ 636 015a A6E7     		b	.L18
+ 637              	.L30:
+  87:Core/Src/tim.c ****   }
+ 638              		.loc 1 87 5 view .LVU214
+ 639 015c FFF7FEFF 		bl	Error_Handler
+ 640              	.LVL30:
+ 641 0160 AAE7     		b	.L19
+ 642              	.L31:
+  91:Core/Src/tim.c ****   }
+ 643              		.loc 1 91 5 view .LVU215
+ 644 0162 FFF7FEFF 		bl	Error_Handler
+ 645              	.LVL31:
+ 646 0166 AEE7     		b	.L20
+ 647              	.L32:
+  96:Core/Src/tim.c ****   }
+ 648              		.loc 1 96 5 view .LVU216
+ 649 0168 FFF7FEFF 		bl	Error_Handler
+ 650              	.LVL32:
+ 651 016c B4E7     		b	.L21
+ 652              	.L33:
+ 103:Core/Src/tim.c ****   }
+ 653              		.loc 1 103 5 view .LVU217
+ 654 016e FFF7FEFF 		bl	Error_Handler
+ 655              	.LVL33:
+ 656 0172 C1E7     		b	.L22
+ 657              	.L34:
+ 120:Core/Src/tim.c ****   }
+ 658              		.loc 1 120 5 view .LVU218
+ 659 0174 FFF7FEFF 		bl	Error_Handler
+ 660              	.LVL34:
+ 661 0178 DCE7     		b	.L23
+ 662              	.L36:
+ 663 017a 00BF     		.align	2
+ 664              	.L35:
+ 665 017c 00000000 		.word	htim1
+ 666 0180 002C0140 		.word	1073818624
+ 667              		.cfi_endproc
+ 668              	.LFE361:
+ 670              		.section	.text.HAL_TIM_PWM_MspDeInit,"ax",%progbits
+ 671              		.align	1
+ 672              		.global	HAL_TIM_PWM_MspDeInit
+ 673              		.syntax unified
+ 674              		.thumb
+ 675              		.thumb_func
+ 677              	HAL_TIM_PWM_MspDeInit:
+ 678              	.LVL35:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 20
+
+
+ 679              	.LFB364:
+ 212:Core/Src/tim.c **** 
+ 213:Core/Src/tim.c **** void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* tim_pwmHandle)
+ 214:Core/Src/tim.c **** {
+ 680              		.loc 1 214 1 view -0
+ 681              		.cfi_startproc
+ 682              		@ args = 0, pretend = 0, frame = 0
+ 683              		@ frame_needed = 0, uses_anonymous_args = 0
+ 684              		.loc 1 214 1 is_stmt 0 view .LVU220
+ 685 0000 08B5     		push	{r3, lr}
+ 686              	.LCFI12:
+ 687              		.cfi_def_cfa_offset 8
+ 688              		.cfi_offset 3, -8
+ 689              		.cfi_offset 14, -4
+ 215:Core/Src/tim.c **** 
+ 216:Core/Src/tim.c ****   if(tim_pwmHandle->Instance==TIM1)
+ 690              		.loc 1 216 3 is_stmt 1 view .LVU221
+ 691              		.loc 1 216 19 is_stmt 0 view .LVU222
+ 692 0002 0268     		ldr	r2, [r0]
+ 693              		.loc 1 216 5 view .LVU223
+ 694 0004 0A4B     		ldr	r3, .L41
+ 695 0006 9A42     		cmp	r2, r3
+ 696 0008 00D0     		beq	.L40
+ 697              	.LVL36:
+ 698              	.L37:
+ 217:Core/Src/tim.c ****   {
+ 218:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspDeInit 0 */
+ 219:Core/Src/tim.c **** 
+ 220:Core/Src/tim.c ****   /* USER CODE END TIM1_MspDeInit 0 */
+ 221:Core/Src/tim.c ****     /* Peripheral clock disable */
+ 222:Core/Src/tim.c ****     __HAL_RCC_TIM1_CLK_DISABLE();
+ 223:Core/Src/tim.c **** 
+ 224:Core/Src/tim.c ****     /**TIM1 GPIO Configuration
+ 225:Core/Src/tim.c ****     PA6     ------> TIM1_BKIN
+ 226:Core/Src/tim.c ****     PB13     ------> TIM1_CH1N
+ 227:Core/Src/tim.c ****     PB14     ------> TIM1_CH2N
+ 228:Core/Src/tim.c ****     PB15     ------> TIM1_CH3N
+ 229:Core/Src/tim.c ****     PA8     ------> TIM1_CH1
+ 230:Core/Src/tim.c ****     PA9     ------> TIM1_CH2
+ 231:Core/Src/tim.c ****     PA10     ------> TIM1_CH3
+ 232:Core/Src/tim.c ****     PA11     ------> TIM1_CH4
+ 233:Core/Src/tim.c ****     */
+ 234:Core/Src/tim.c ****     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_6|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10
+ 235:Core/Src/tim.c ****                           |GPIO_PIN_11);
+ 236:Core/Src/tim.c **** 
+ 237:Core/Src/tim.c ****     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15);
+ 238:Core/Src/tim.c **** 
+ 239:Core/Src/tim.c ****   /* USER CODE BEGIN TIM1_MspDeInit 1 */
+ 240:Core/Src/tim.c **** 
+ 241:Core/Src/tim.c ****   /* USER CODE END TIM1_MspDeInit 1 */
+ 242:Core/Src/tim.c ****   }
+ 243:Core/Src/tim.c **** }
+ 699              		.loc 1 243 1 view .LVU224
+ 700 000a 08BD     		pop	{r3, pc}
+ 701              	.LVL37:
+ 702              	.L40:
+ 222:Core/Src/tim.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 21
+
+
+ 703              		.loc 1 222 5 is_stmt 1 view .LVU225
+ 704 000c 094A     		ldr	r2, .L41+4
+ 705 000e 136E     		ldr	r3, [r2, #96]
+ 706 0010 23F40063 		bic	r3, r3, #2048
+ 707 0014 1366     		str	r3, [r2, #96]
+ 234:Core/Src/tim.c ****                           |GPIO_PIN_11);
+ 708              		.loc 1 234 5 view .LVU226
+ 709 0016 4FF47461 		mov	r1, #3904
+ 710 001a 4FF09040 		mov	r0, #1207959552
+ 711              	.LVL38:
+ 234:Core/Src/tim.c ****                           |GPIO_PIN_11);
+ 712              		.loc 1 234 5 is_stmt 0 view .LVU227
+ 713 001e FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 714              	.LVL39:
+ 237:Core/Src/tim.c **** 
+ 715              		.loc 1 237 5 is_stmt 1 view .LVU228
+ 716 0022 4FF46041 		mov	r1, #57344
+ 717 0026 0448     		ldr	r0, .L41+8
+ 718 0028 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 719              	.LVL40:
+ 720              		.loc 1 243 1 is_stmt 0 view .LVU229
+ 721 002c EDE7     		b	.L37
+ 722              	.L42:
+ 723 002e 00BF     		.align	2
+ 724              	.L41:
+ 725 0030 002C0140 		.word	1073818624
+ 726 0034 00100240 		.word	1073876992
+ 727 0038 00040048 		.word	1207960576
+ 728              		.cfi_endproc
+ 729              	.LFE364:
+ 731              		.global	htim1
+ 732              		.section	.bss.htim1,"aw",%nobits
+ 733              		.align	2
+ 736              	htim1:
+ 737 0000 00000000 		.space	76
+ 737      00000000 
+ 737      00000000 
+ 737      00000000 
+ 737      00000000 
+ 738              		.text
+ 739              	.Letext0:
+ 740              		.file 2 "C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 741              		.file 3 "C:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 742              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
+ 743              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 744              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 745              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 746              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h"
+ 747              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h"
+ 748              		.file 10 "Core/Inc/tim.h"
+ 749              		.file 11 "Core/Inc/main.h"
+ 750              		.file 12 "<built-in>"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s 			page 22
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 tim.c
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:21     .text.HAL_TIM_PWM_MspInit:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:27     .text.HAL_TIM_PWM_MspInit:00000000 HAL_TIM_PWM_MspInit
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:127    .text.HAL_TIM_PWM_MspInit:00000060 $d
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:132    .text.HAL_TIM_MspPostInit:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:138    .text.HAL_TIM_MspPostInit:00000000 HAL_TIM_MspPostInit
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:309    .text.HAL_TIM_MspPostInit:000000ac $d
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:315    .text.MX_TIM1_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:321    .text.MX_TIM1_Init:00000000 MX_TIM1_Init
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:665    .text.MX_TIM1_Init:0000017c $d
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:736    .bss.htim1:00000000 htim1
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:671    .text.HAL_TIM_PWM_MspDeInit:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:677    .text.HAL_TIM_PWM_MspDeInit:00000000 HAL_TIM_PWM_MspDeInit
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:725    .text.HAL_TIM_PWM_MspDeInit:00000030 $d
+C:\Users\ACER\AppData\Local\Temp\cch7JLDs.s:733    .bss.htim1:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_Init
+memset
+HAL_TIM_PWM_Init
+HAL_TIM_OC_Init
+HAL_TIMEx_MasterConfigSynchronization
+HAL_TIMEx_ConfigBreakInput
+HAL_TIM_PWM_ConfigChannel
+HAL_TIM_OC_ConfigChannel
+HAL_TIMEx_ConfigBreakDeadTime
+Error_Handler
+HAL_GPIO_DeInit
